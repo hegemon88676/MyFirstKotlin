@@ -1,30 +1,30 @@
 package com.example.androidfmi
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recylerviewkotlin.MyAdapter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class HomeFragment : Fragment() {
 
     private lateinit var newRecylerView : RecyclerView
     private lateinit var newArrayList : ArrayList<News>
-    //    private lateinit var tempArrayList : ArrayList<News>
+    private lateinit var tempArrayList : ArrayList<News>
+    private lateinit var searchbar: ItemView
     lateinit var imageId : Array<Int>
     lateinit var heading : Array<String>
     lateinit var news : Array<String>
 
-
-    companion object {
-        fun newInstance() = RecyclerFragment()
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         imageId = arrayOf(
             R.drawable.a,
             R.drawable.b,
@@ -75,26 +75,53 @@ class HomeFragment : Fragment() {
         newRecylerView.layoutManager = LinearLayoutManager(view.context)
         newRecylerView.setHasFixedSize(true)
 
-        newArrayList = arrayListOf<News>()
-        //            tempArrayList = arrayListOf<News>()
+        newArrayList = arrayListOf()
+        tempArrayList = arrayListOf()
         getUserData()
 
-//        for(i in imageId.indices){
-//            val news = News(imageId[i], heading[i])
-//            newArrayList.add(news)
-//        }
-
-        newRecylerView.adapter = MyAdapter(newsList = newArrayList)
+        newRecylerView.adapter = MyAdapter(newsList = tempArrayList)
         return view
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.search,menu)
+        val item = menu.findItem(R.id.search_action)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                tempArrayList.clear()
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                if(searchText.isNotEmpty()){
+                    newArrayList.forEach{item ->
+                        if(item.heading.lowercase(Locale.getDefault()).contains(searchText))
+                            tempArrayList.add(item)
+                    }
+                }
+                else{
+                    tempArrayList.clear()
+                    tempArrayList.addAll(newArrayList)
+                }
+
+                newRecylerView.adapter!!.notifyDataSetChanged()
+                return false
+            }
+
+        })
+        super.onCreateOptionsMenu(menu, inflater)
+    }
 
     private fun getUserData() {
         for(i in imageId.indices){
             val news = News(imageId[i], heading[i])
             newArrayList.add(news)
         }
+        tempArrayList.addAll(newArrayList)
     }
 
 }
