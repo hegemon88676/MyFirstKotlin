@@ -1,9 +1,9 @@
 package com.example.androidfmi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.example.androidfmi.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -19,16 +19,23 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
                 R.id.settings -> replaceFragment(SettingsFragment())
-                R.id.profile -> replaceFragment(ProfileFragment())
+                R.id.camera -> replaceToCameraActivity()
                 else -> return@setOnNavigationItemSelectedListener false
             }
+            true
         }
     }
 
-    private fun replaceFragment(fragment:Fragment):Boolean {
+
+    private fun replaceToCameraActivity() {
+        val intent = Intent(this@MainActivity, CameraActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun replaceFragment(fragment:Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
-        return true
     }
+
 }

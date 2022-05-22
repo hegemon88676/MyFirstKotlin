@@ -17,7 +17,6 @@ class HomeFragment : Fragment() {
     private lateinit var newRecylerView : RecyclerView
     private lateinit var newArrayList : ArrayList<News>
     private lateinit var tempArrayList : ArrayList<News>
-    private lateinit var searchbar: ItemView
     lateinit var imageId : Array<Int>
     lateinit var heading : Array<String>
     lateinit var news : Array<String>
