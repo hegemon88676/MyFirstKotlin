@@ -102,6 +102,10 @@
     Born in East Pakistan (now Bangladesh), Bypari’s family migrated to West Bengal when he was three. He even served a jail term for his alleged Naxal links. Raised in refugee camps, the writer never received a formal education.</string>
     <string name="take_photo">Take photo!</string>
     <string name="camera">Camera</string>
+    <string name="share_fragment">Share fragment</string>
+    <string name="show_sharesheet">Show ShareSheet!</string>
+    <string name="send_to">Send to...</string>
+    <string name="share">Share</string>
 
 
 </resources>

@@ -3,16 +3,21 @@
              xmlns:tools="http://schemas.android.com/tools"
              android:layout_width="match_parent"
              android:layout_height="match_parent"
-             tools:context=".SettingsFragment"
+             tools:context=".ShareFragment"
         android:background="@color/purple_700">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/settings_fragment"
-            android:textSize="26sp"
-            android:layout_gravity="center"/>
+            android:id="@+id/showShareSheet"
+            android:text="@string/show_sharesheet"
+            android:layout_marginTop="325dp"
+            android:layout_marginStart="115dp"
+            />
+
+    <!--            android:stateListAnimator="@null"-->
+
+
 
 
 </FrameLayout>

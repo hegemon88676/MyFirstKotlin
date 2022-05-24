@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/home" android:icon="@drawable/ic_baseline_home_24" android:id="@+id/home"/>
     <item android:title="@string/camera" android:icon="@drawable/ic_baseline_camera_alt_24" android:id="@+id/camera"/>
-    <item android:title="@string/settings" android:icon="@drawable/ic_baseline_hub_24" android:id="@+id/settings"/>
+    <item android:title="@string/share" android:icon="@drawable/ic_baseline_ios_share_24" android:id="@+id/share"/>
 </menu>

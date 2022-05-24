@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener{ item ->
             when (item.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
-                R.id.settings -> replaceFragment(SettingsFragment())
+                R.id.share -> replaceFragment(ShareFragment())
                 R.id.camera -> replaceToCameraActivity()
                 else -> return@setOnNavigationItemSelectedListener false
             }
